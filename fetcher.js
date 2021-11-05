@@ -18,7 +18,7 @@ request(url, (error, response, body) => {
   fs.stat(filePath, (err, stats) => {
     if (err) {
       console.error(err)
-      return
+      return;
     }
     if (stats.size > 0) {
       rl.question('File exists, do you want to overwrite? (Y/N) ', (ans) => {
@@ -26,7 +26,7 @@ request(url, (error, response, body) => {
           fs.writeFile(filePath, body, err => {
             if (err) {
               console.error(err);
-              return
+              return;
             }
             console.log(`Downloaded and saved ${fileSize} bytes to ${filePath}.`);
           })
@@ -39,9 +39,10 @@ request(url, (error, response, body) => {
     fs.writeFile(filePath, body, err => {
       if (err) {
         console.error(err);
-        return
+        return;
       }
       console.log(`Downloaded and saved ${fileSize} bytes to ${filePath}.`);
-    })
-  })
+      rl.close();
+    });
+  });
 });
