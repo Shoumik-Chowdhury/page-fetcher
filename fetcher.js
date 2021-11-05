@@ -17,7 +17,7 @@ request(url, (error, response, body) => {
 
   fs.stat(filePath, (err, stats) => {
     if (err) {
-      console.error(err)
+      console.error(err);
       return;
     }
     if (stats.size > 0) {
@@ -29,12 +29,12 @@ request(url, (error, response, body) => {
               return;
             }
             console.log(`Downloaded and saved ${fileSize} bytes to ${filePath}.`);
-          })
+          });
         } else {
           console.log('File not copied!');
         }
         rl.close();
-      })
+      });
     }
     fs.writeFile(filePath, body, err => {
       if (err) {
